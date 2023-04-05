@@ -6,8 +6,8 @@ from io import BytesIO
 import openai
 import json
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
-openai.api_key = "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"
-API_KEY = "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"
+openai.api_key = "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"
+API_KEY = "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"
 r = sr.Recognizer()
 
 
