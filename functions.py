@@ -32,6 +32,7 @@ def calibrate():
 
 energy_threshold = calibrate()
 speak("I am ready. Let's begin")
+
 time.sleep(1)
 
 def get_audio():
