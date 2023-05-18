@@ -1,14 +1,18 @@
-from functions import *
+from functions import * 
 
 def respond(text):
-    x = text.replace("eva", "ava")
+    x = text.replace("axe", "max")
     print("Spoken text: " + text)
-    if 'ava' not in x:
+    if 'max' not in x:
+        return
+    elif 'stop' in x:
         return
     elif(text):
-        ChatGPT(text)
+        chat_gpt(text)
     else:
         return
+
+
 
 while True:
     try:
