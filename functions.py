@@ -4,10 +4,15 @@ import os
 import openai
 import time
 import wolframalpha
+import platform
+
+if(platform.python_version() != "3.11.3"):
+    print("Please use Python 3.11.3 for the best expereince you are currently using " + platform.python_version())
+
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
-openai.api_key = "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"
-API_KEY = "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"
+openai.api_key = ""
+API_KEY = ""
 r = sr.Recognizer()
 
 app_id = "KX96V7-KVKHL73WP5"
@@ -33,7 +38,7 @@ def calibrate():
 energy_threshold = calibrate()
 speak("I am ready. Let's begin")
 
-time.sleep(1)
+time.sleep(2)
 
 def get_audio():
     with sr.Microphone() as source:
