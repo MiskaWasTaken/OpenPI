@@ -3,6 +3,8 @@
 
 OpenPi is a easy to use virtal assistant with minimal setup required. It is designed to be ran on a raspberry pi and is completly independant.
 
+## Wiki
+[READ THIS!!!!](https://github.com/MiskaWasTaken/OpenPI/wiki)
 
 ## Features
 
