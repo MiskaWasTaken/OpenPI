@@ -1,51 +1,44 @@
 import speech_recognition as sr
 import pyttsx3
-import os
 import openai
-import time
 import wolframalpha
 import platform
+
+def speak(text):
+    engine = pyttsx3.init()
+    engine.setProperty('rate', 140)
+    engine.say(text)
+    engine.runAndWait()
+
+speak("Welcome to OpenPI. My name is Max and my goal is to assist you with your questions. To talk to me just include my name in every sentence you would like me to respond to. If my name is not in your question, I would not be able to respond to it. Here is an example: Max how is the weather like? Also ensure that you are using a stable wifi connection with atleast 10MB up and down speeds with minimal latency. For more details please go to this website: https://github.com/MiskaWasTaken/OpenPi")
 
 if(platform.python_version() != "3.11.3"):
     print("Please use Python 3.11.3 for the best expereince you are currently using " + platform.python_version())
 
-
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
-openai.api_key = ""
-API_KEY = ""
+openai.api_key = "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"
+API_KEY = "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"
 r = sr.Recognizer()
 
 app_id = "KX96V7-KVKHL73WP5"
 
 client = wolframalpha.Client(app_id)
 
-def speak(text):
-    engine = pyttsx3.init()
-    engine.setProperty('rate', 150)
-    engine.say(text)
-    engine.runAndWait()
-
 def calibrate():
     speak("I am getting ready. Please wait a moment")
-    time.sleep(1)
     with sr.Microphone() as source:
         print("calibrating")    
         r.adjust_for_ambient_noise(source, duration=5)
         threshold = r.energy_threshold
     return threshold
 
-
 energy_threshold = calibrate()
 speak("I am ready. Let's begin")
-
-time.sleep(2)
 
 def get_audio():
     with sr.Microphone() as source:
         r.energy_threshold = energy_threshold
         r.dynamic_energy_threshold = False
         speak("Listening...")
-        time.sleep(1)
         print("Listening...")
         audio = r.listen(source)
         try:
@@ -60,12 +53,8 @@ def get_audio():
             return
     return my_text.lower()
 
-
 def check_answer_keywords(answer, keywords_list):
-    for keyword in keywords_list:
-        if keyword in answer:
-            return True 
-    return False 
+    return any(keyword in answer for keyword in keywords_list)
 
 def chat_gpt(text):
     def wolfram(text):
@@ -102,5 +91,3 @@ def chat_gpt(text):
     except Exception as e:
         print(e)
         speak("An error occurred while contacting ChatGPT. Please contact a staff member")
-
-
