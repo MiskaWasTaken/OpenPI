@@ -16,11 +16,11 @@ OpenPi is a easy to use virtal assistant with minimal setup required. It is desi
 
 ## Installation
 
-Install with python version `3.8.9`
+Install with python version `3.11.3`
 ```bash
   cd project/
   pip install -r requirments.txt
-  op OpenPI.py
+  py OpenPI.py
 ```
     
 ## Authors
